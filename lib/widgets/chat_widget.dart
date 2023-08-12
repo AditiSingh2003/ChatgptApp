@@ -4,7 +4,10 @@ import 'package:chatgpt/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 
 class ChatWidget extends StatelessWidget {
-  const ChatWidget({super.key, required this.msg, required this.chatIndex});
+  const ChatWidget({
+    super.key, 
+    required this.msg,
+    required this.chatIndex});
 
   final String msg;
   final int chatIndex;
@@ -19,13 +22,28 @@ class ChatWidget extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Row(children: [
               Image.asset(
-                AssestsManager.userImage,
+                chatIndex == 0 ? AssestsManager.userImage : AssestsManager.openaiImage,
                 height: 40,
                 width: 40,
                 ),
                 SizedBox(width: 10,),
-                TextWidget(label: 'Hello here is our message')
-            ],),
+                Expanded(
+                  child: TextWidget(
+                    label: msg
+                    ),
+                ),
+                
+                chatIndex == 0 ? const SizedBox.shrink()
+                : Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                  Icon(Icons.thumb_up_alt_outlined, color: Colors.white,),
+                  SizedBox(width: 10,),
+                  Icon(Icons.thumb_down_alt_outlined, color: Colors.white,),
+                ],)
+            ],
+            ),
           ),
         )
       ],
