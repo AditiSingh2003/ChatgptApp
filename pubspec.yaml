@@ -39,6 +39,7 @@ dependencies:
   http:
   provider:
   animated_text_kit:
+  flutter_dotenv:
 
 dev_dependencies:
   flutter_test:
